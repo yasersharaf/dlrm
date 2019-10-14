@@ -353,6 +353,7 @@ def getKaggleCriteoAdData(datafile="", o_filename=""):
     count = 0
     if split == 1:
         # load training data
+        print("Split is 1")
         with open(str(datafile)) as f:
 
             for i, line in enumerate(f):
@@ -385,18 +386,18 @@ def getKaggleCriteoAdData(datafile="", o_filename=""):
                 X_int[i - count] = data["int_feature"]
                 X_cat[i - count] = data["cat_feature"]
 
-                print(
-                    "Loading %d/%d   Split: %d   No Data in Split: %d  true label: %d  stored label: %d"
-                    % (
-                        i,
-                        total_count,
-                        split,
-                        num_data_in_split,
-                        data["label"],
-                        y[i - count],
-                    ),
-                    end="\r",
-                )
+#                print(
+#                    "Loading %d/%d   Split: %d   No Data in Split: %d  true label: %d  stored label: %d"
+#                    % (
+#                        i,
+#                        total_count,
+#                        split,
+#                        num_data_in_split,
+#                        data["label"],
+#                        y[i - count],
+#                    ),
+#                    end="\r",
+#                )
 
         np.savez_compressed(
             str(d_path) + "kaggle_day_{0}.npz".format(split),
@@ -407,6 +408,7 @@ def getKaggleCriteoAdData(datafile="", o_filename=""):
 
         print("\nSaved kaggle_day_{0}.npz!".format(split))
     else:
+        print("Split is 0")
         print("Using existing %skaggle_day_*.npz files" % str(d_path))
 
     processKaggleCriteoAdData(split, d_path)
