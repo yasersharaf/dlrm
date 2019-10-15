@@ -386,7 +386,7 @@ def getKaggleCriteoAdData(datafile="", o_filename=""):
                 X_int[i - count] = data["int_feature"]
                 X_cat[i - count] = data["cat_feature"]
 
-                if i% (int(num_data_in_split/20)) == 0:
+                if i% (int(num_data_in_split/100)) == 0:
                     print("Percentage = ", i/num_data_in_split*100)
                     print(
                         "Loading %d/%d   Split: %d   No Data in Split: %d  true label: %d  stored label: %d"
@@ -397,8 +397,9 @@ def getKaggleCriteoAdData(datafile="", o_filename=""):
                             num_data_in_split,
                             data["label"],
                             y[i - count],
-                        ),
-                        end="\r",
+                        )
+                        # ,
+                        # end="\r",
                     )
 
         np.savez_compressed(
