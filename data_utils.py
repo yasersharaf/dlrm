@@ -40,7 +40,7 @@ def convertUStringToDistinctInts(mat, convertDicts, counts):
 
     # check if convertDicts and counts match correct length of mat
     if len(convertDicts) != mat.shape[1] or len(counts) != mat.shape[1]:
-        print("len(convertDicts)= %d,  mat.shape[1]= %d, len(counts) = %d, mat.shape[1] = %d",len(convertDicts), mat.shape[1], len(counts), mat.shape[1])
+        print("len(convertDicts)= %d,  mat.shape[1]= %d, len(counts) = %d, mat.shape[1] = %d" %(len(convertDicts), mat.shape[1], len(counts), mat.shape[1]))
         print("Length of convertDicts or counts does not match input shape")
         print("Generating convertDicts and counts...")
 
@@ -84,7 +84,7 @@ def processKaggleCriteoAdData(split, d_path):
 
     # process data if not all files exist
     if idx <= split:
-        for i in range(1, split + 1):
+        for i in range(6, split + 1):
             with np.load(str(d_path) + "kaggle_day_{0}.npz".format(i)) as data:
 
                 X_cat, convertDicts, counts = convertUStringToDistinctInts(
