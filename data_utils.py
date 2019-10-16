@@ -84,7 +84,7 @@ def processKaggleCriteoAdData(split, d_path):
 
     # process data if not all files exist
     if idx <= split:
-        for i in range(6, split + 1):
+        for i in range(0, split + 1):
             with np.load(str(d_path) + "kaggle_day_{0}.npz".format(i)) as data:
 
                 X_cat, convertDicts, counts = convertUStringToDistinctInts(
@@ -151,6 +151,7 @@ def concatKaggleCriteoAdData(split, d_path, o_filename):
         y=y,
         counts=counts,
     )
+    print ("Saved concatenated multiple day kaggle data into %s.npz file" % str(d_path + o_filename))
 
     return str(d_path) + str(o_filename) + ".npz"
 
