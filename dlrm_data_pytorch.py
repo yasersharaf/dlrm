@@ -103,7 +103,7 @@ class CriteoDataset(Dataset):
             elif split == 'test':
                 self.samples_list = [(X_int[i], X_cat[i], y[i]) for i in val_indices]
             print("forced garbage collections...")
-            del X_int X_cat y
+            del X_int, X_cat, y
         print("Split data according to indices...")
 
 
