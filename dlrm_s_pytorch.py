@@ -485,31 +485,31 @@ if __name__ == "__main__":
     # input data
     if args.data_generation == "dataset":
         # input and target from dataset
-        def collate_wrapper(list_of_tuples):
-            # where each tuple is (X_int, X_cat, y)
-            transposed_data = list(zip(*list_of_tuples))
-            X_int = torch.stack(transposed_data[0], 0)
-            X_cat = torch.stack(transposed_data[1], 0)
-            T     = torch.stack(transposed_data[2], 0).view(-1,1)
+def collate_wrapper(list_of_tuples):
+    # where each tuple is (X_int, X_cat, y)
+    transposed_data = list(zip(*list_of_tuples))
+    X_int = torch.stack(transposed_data[0], 0)
+    X_cat = torch.stack(transposed_data[1], 0)
+    T     = torch.stack(transposed_data[2], 0).view(-1,1)
 
-            sz0 = X_cat.shape[0]
-            sz1 = X_cat.shape[1]
-            if use_gpu:
-                lS_i = [X_cat[:, i].pin_memory() for i in range(sz1)]
-                lS_o = [torch.tensor(range(sz0)).pin_memory() for _ in range(sz1)]
-                return X_int.pin_memory(), lS_o, lS_i, T.pin_memory()
-            else:
-                lS_i = [X_cat[:, i] for i in range(sz1)]
-                lS_o = [torch.tensor(range(sz0)) for _ in range(sz1)]
-                return X_int, lS_o, lS_i, T
+    sz0 = X_cat.shape[0]
+    sz1 = X_cat.shape[1]
+    if use_gpu:
+        lS_i = [X_cat[:, i].pin_memory() for i in range(sz1)]
+        lS_o = [torch.tensor(range(sz0)).pin_memory() for _ in range(sz1)]
+        return X_int.pin_memory(), lS_o, lS_i, T.pin_memory()
+    else:
+        lS_i = [X_cat[:, i] for i in range(sz1)]
+        lS_o = [torch.tensor(range(sz0)) for _ in range(sz1)]
+        return X_int, lS_o, lS_i, T
 
-        train_data = dp.CriteoDataset(
-            args.data_set,
-            args.data_randomize,
-            "train",
-            args.raw_data_file,
-            args.processed_data_file,
-        )
+train_data = dp.CriteoDataset(
+    args.data_set,
+    args.data_randomize,
+    "train",
+    args.raw_data_file,
+    args.processed_data_file,
+)
         train_loader = torch.utils.data.DataLoader(
             train_data,
             batch_size=args.mini_batch_size,
