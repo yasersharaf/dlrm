@@ -458,6 +458,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     ### some basic setup ###
+
+    import pickle
+    with open(filename, ‘wb’) as pickle_file:
+    pickle.dump(your_content, pickle_file)
+    
     np.random.seed(args.numpy_rand_seed)
     np.set_printoptions(precision=args.print_precision)
     torch.set_printoptions(precision=args.print_precision)
