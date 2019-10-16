@@ -40,6 +40,7 @@ def convertUStringToDistinctInts(mat, convertDicts, counts):
 
     # check if convertDicts and counts match correct length of mat
     if len(convertDicts) != mat.shape[1] or len(counts) != mat.shape[1]:
+        print("len(convertDicts)= %d,  mat.shape[1]= %d, len(counts) = %d, mat.shape[1] = %d",len(convertDicts), mat.shape[1], len(counts), mat.shape[1])
         print("Length of convertDicts or counts does not match input shape")
         print("Generating convertDicts and counts...")
 
@@ -350,7 +351,7 @@ def getKaggleCriteoAdData(datafile="", o_filename=""):
             split = 1
             break
     split = min(split, 7)
-    print("1- split = %d , split was %d", split,xsplit)
+    print("1- split = %d ", split)
     print("path is: "+ str(str(d_path) + "kaggle_day_{0}.npz".format(split)))
     count = 0
     if split == 1:
