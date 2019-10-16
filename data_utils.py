@@ -346,10 +346,12 @@ def getKaggleCriteoAdData(datafile="", o_filename=""):
         if path.exists(str(str(d_path) + "kaggle_day_{0}.npz".format(split))):
             split += 1
         else:
+            xsplit = split
             split = 1
             break
     split = min(split, 7)
-
+    print("1- split = %d , split was %d", split,xsplit)
+    print("path is: "+ str(str(d_path) + "kaggle_day_{0}.npz".format(split)))
     count = 0
     if split == 1:
         # load training data
