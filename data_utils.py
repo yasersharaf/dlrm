@@ -93,7 +93,7 @@ def processKaggleCriteoAdData(split, d_path):
                 X_int = data["X_int"]
                 X_int[X_int < 0] = 0
                 y = data["y"]
-            print(tr(d_path) + "kaggle_day_{0}.npz".format(i)+ " is saved!")
+            print(str(d_path) + "kaggle_day_{0}.npz".format(i)+ " is saved!")
             np.savez_compressed(
                 str(d_path) + "kaggle_day_{0}_processed.npz".format(i),
                 X_cat=X_cat,
